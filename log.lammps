@@ -1,0 +1,137 @@
+LAMMPS (19 Sep 2019)
+OMP_NUM_THREADS environment is not set. Defaulting to 1 thread. (../comm.cpp:93)
+  using 1 OpenMP thread(s) per MPI task
+# write your surname with fullerenes
+
+dimension  3
+units  metal
+boundary   p p p
+atom_style atomic
+neighbor 1.0 bin
+neigh_modify every 1 check no
+
+# read in atomic coordinates and box properties
+
+#read_data 1sample_data_file.dat     ##Olu�turdu�unuz data dosyas�n�n ismini burada kullan�n.
+read_data fullerene_C60.dat     ##Olu�turdu�unuz data dosyas�n�n ismini burada kullan�n.
+  orthogonal box = (-50 -50 -10) to (200 50 10)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  1860 atoms
+  read_data CPU = 0.0156209 secs
+
+# airebo potential      ## E�er potansiyel dosyas�n� bulamad���na dair hata al�rsan�z LAMMPs kurulum klas�r�ndeki .../Potentials klas�r� i�indeki CH.airebo dosyas�n� �al��t���n�z klas�re kopyalay�n.
+pair_style airebo 2.5 1 0
+pair_coeff * * CH.airebo C
+Reading potential file CH.airebo with DATE: 2011-10-25
+
+# fix ends
+
+
+mass * 12.0
+
+# setup
+
+
+dump 1000 all atom 10 KAMACI.lammpstrj
+
+minimize 1e-8 1e-8 10000 10000
+WARNING: Using 'neigh_modify every 1 delay 0 check yes' setting during minimization (../min.cpp:174)
+Neighbor list info ...
+  update every 1 steps, delay 0 steps, check yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 9.5
+  ghost atom cutoff = 9.5
+  binsize = 4.75, bins = 53 22 5
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair airebo, perpetual
+      attributes: full, newton on, ghost
+      pair build: full/bin/ghost
+      stencil: full/ghost/bin/3d
+      bin: standard
+Per MPI rank memory allocation (min/avg/max) = 6.523 | 6.523 | 6.523 Mbytes
+Step Temp E_pair E_mol TotEng Press 
+       0            0   -13263.365            0   -13263.365    8779.9606 
+      83            0   -13412.487            0   -13412.487   -25.404261 
+Loop time of 2.59934 on 1 procs for 83 steps with 1860 atoms
+
+100.4% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+Minimization stats:
+  Stopping criterion = energy tolerance
+  Energy initial, next-to-last, final = 
+        -13263.3648949     -13412.4871167     -13412.4871701
+  Force two-norm initial, final = 121.495 1.21023
+  Force max component initial, final = 3.41839 0.494677
+  Final line search alpha, max atom move = 0.0124862 0.00617663
+  Iterations, force evaluations = 83 222
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 2.5744     | 2.5744     | 2.5744     |   0.0 | 99.04
+Neigh   | 0.0039909  | 0.0039909  | 0.0039909  |   0.0 |  0.15
+Comm    | 0.0030599  | 0.0030599  | 0.0030599  |   0.0 |  0.12
+Output  | 0.010958   | 0.010958   | 0.010958   |   0.0 |  0.42
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 0.006979   |            |       |  0.27
+
+Nlocal:    1860 ave 1860 max 1860 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:    1623 ave 1623 max 1623 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:    0 ave 0 max 0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+FullNghs:  185750 ave 185750 max 185750 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 185750
+Ave neighs/atom = 99.8656
+Neighbor list builds = 2
+Dangerous builds not checked
+undump 1000
+
+reset_timestep 0
+timestep 0.001
+
+fix 1 all nve
+fix 2 all langevin 290.0 290.0 0.1 343434
+
+
+
+dump 1000 all atom 50 KAMACI.lammpstrj
+
+run 1
+Per MPI rank memory allocation (min/avg/max) = 5.28 | 5.28 | 5.28 Mbytes
+Step Temp E_pair E_mol TotEng Press 
+       0            0   -13412.487            0   -13412.487   -25.404261 
+       1     2.928034   -13412.473            0   -13411.769   -22.927598 
+Loop time of 0.0156271 on 1 procs for 1 steps with 1860 atoms
+
+Performance: 5.529 ns/day, 4.341 hours/ns, 63.991 timesteps/s
+0.0% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0.015627   | 0.015627   | 0.015627   |   0.0 |100.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 0          |            |       |  0.00
+
+Nlocal:    1860 ave 1860 max 1860 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:    1622 ave 1622 max 1622 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:    0 ave 0 max 0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+FullNghs:  185478 ave 185478 max 185478 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 185478
+Ave neighs/atom = 99.7194
+Neighbor list builds = 0
+Dangerous builds not checked
+Total wall time: 0:00:02

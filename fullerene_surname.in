@@ -1,0 +1,42 @@
+# write your surname with fullerenes
+
+dimension  3
+units  metal
+boundary   p p p
+atom_style atomic
+neighbor 1.0 bin
+neigh_modify every 1 check no
+
+# read in atomic coordinates and box properties
+
+#read_data 1sample_data_file.dat     ##Olu�turdu�unuz data dosyas�n�n ismini burada kullan�n.
+read_data fullerene_C60.dat     ##Olu�turdu�unuz data dosyas�n�n ismini burada kullan�n.
+
+# airebo potential      ## E�er potansiyel dosyas�n� bulamad���na dair hata al�rsan�z LAMMPs kurulum klas�r�ndeki .../Potentials klas�r� i�indeki CH.airebo dosyas�n� �al��t���n�z klas�re kopyalay�n.
+pair_style airebo 2.5 1 0
+pair_coeff * * CH.airebo C 
+
+# fix ends
+
+
+mass * 12.0
+
+# setup
+
+
+dump 1000 all atom 10 KAMACI.lammpstrj
+
+minimize 1e-8 1e-8 10000 10000
+undump 1000
+
+reset_timestep 0
+timestep 0.001
+
+fix 1 all nve
+fix 2 all langevin 290.0 290.0 0.1 343434
+
+
+
+dump 1000 all atom 50 KAMACI.lammpstrj
+
+run 1

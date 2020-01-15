@@ -13,11 +13,11 @@ neigh_modify every 1 check no
 # read in atomic coordinates and box properties
 
 #read_data 1sample_data_file.dat     ##Olu�turdu�unuz data dosyas�n�n ismini burada kullan�n.
-read_data fullerene_C60.dat     ##Olu�turdu�unuz data dosyas�n�n ismini burada kullan�n.
-  orthogonal box = (-50 -50 -10) to (200 50 10)
+read_data nano5-10-5.dat     ##Olu�turdu�unuz data dosyas�n�n ismini burada kullan�n.
+  orthogonal box = (-50 -50 -0.267977) to (50 50 56.0072)
   1 by 1 by 1 MPI processor grid
   reading atoms ...
-  60 atoms
+  700 atoms
   read_data CPU = 0 secs
 
 # airebo potential      ## E�er potansiyel dosyas�n� bulamad���na dair hata al�rsan�z LAMMPs kurulum klas�r�ndeki .../Potentials klas�r� i�indeki CH.airebo dosyas�n� �al��t���n�z klas�re kopyalay�n.
@@ -42,51 +42,51 @@ Neighbor list info ...
   max neighbors/atom: 2000, page size: 100000
   master list distance cutoff = 9.5
   ghost atom cutoff = 9.5
-  binsize = 4.75, bins = 53 22 5
+  binsize = 4.75, bins = 22 22 12
   1 neighbor lists, perpetual/occasional/extra = 1 0 0
   (1) pair airebo, perpetual
       attributes: full, newton on, ghost
       pair build: full/bin/ghost
       stencil: full/ghost/bin/3d
       bin: standard
-Per MPI rank memory allocation (min/avg/max) = 5.939 | 5.939 | 5.939 Mbytes
+Per MPI rank memory allocation (min/avg/max) = 5.962 | 5.962 | 5.962 Mbytes
 Step Temp E_pair E_mol TotEng Press 
-       0            0   -427.68537            0   -427.68537    284.08325 
-      19            0   -432.42754            0   -432.42754  -0.14527768 
-Loop time of 0.0156212 on 1 procs for 19 steps with 60 atoms
+       0            0   -5420.3693            0   -5420.3693   -1069.0114 
+      18            0   -5424.6761            0   -5424.6761   -425.19021 
+Loop time of 0.169314 on 1 procs for 18 steps with 700 atoms
 
-100.0% CPU use with 1 MPI tasks x 1 OpenMP threads
+101.5% CPU use with 1 MPI tasks x 1 OpenMP threads
 
 Minimization stats:
   Stopping criterion = energy tolerance
   Energy initial, next-to-last, final = 
-        -427.685374961     -432.427540566      -432.42754468
-  Force two-norm initial, final = 21.8142 0.0183659
-  Force max component initial, final = 3.41839 0.00457578
-  Final line search alpha, max atom move = 1 0.00457578
-  Iterations, force evaluations = 19 38
+        -5420.36931372     -5424.67610225     -5424.67612556
+  Force two-norm initial, final = 4.77579 0.0398419
+  Force max component initial, final = 0.172107 0.00259529
+  Final line search alpha, max atom move = 1 0.00259529
+  Iterations, force evaluations = 18 36
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 0.015621   | 0.015621   | 0.015621   |   0.0 |100.00
+Pair    | 0.16931    | 0.16931    | 0.16931    |   0.0 |100.00
 Neigh   | 0          | 0          | 0          |   0.0 |  0.00
 Comm    | 0          | 0          | 0          |   0.0 |  0.00
 Output  | 0          | 0          | 0          |   0.0 |  0.00
 Modify  | 0          | 0          | 0          |   0.0 |  0.00
 Other   |            | 0          |            |       |  0.00
 
-Nlocal:    60 ave 60 max 60 min
+Nlocal:    700 ave 700 max 700 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Nghost:    52 ave 52 max 52 min
+Nghost:    240 ave 240 max 240 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Neighs:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs:  3540 ave 3540 max 3540 min
+FullNghs:  88900 ave 88900 max 88900 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 3540
-Ave neighs/atom = 59
+Total # of neighbors = 88900
+Ave neighs/atom = 127
 Neighbor list builds = 0
 Dangerous builds not checked
 undump 1000
@@ -102,11 +102,11 @@ fix 2 all langevin 290.0 290.0 0.1 343434
 dump 1000 all atom 50 KAMACI.lammpstrj
 
 run 1
-Per MPI rank memory allocation (min/avg/max) = 4.314 | 4.314 | 4.314 Mbytes
+Per MPI rank memory allocation (min/avg/max) = 4.337 | 4.337 | 4.337 Mbytes
 Step Temp E_pair E_mol TotEng Press 
-       0            0   -432.42754            0   -432.42754  -0.14527768 
-       1    2.7904285   -432.42714            0   -432.40586 -0.010214835 
-Loop time of 0 on 1 procs for 1 steps with 60 atoms
+       0            0   -5424.6761            0   -5424.6761   -425.19021 
+       1    2.9973609   -5424.6702            0   -5424.3994   -424.44307 
+Loop time of 0 on 1 procs for 1 steps with 700 atoms
 
 Performance: inf ns/day, 0.000 hours/ns, inf timesteps/s
 0.0% CPU use with 1 MPI tasks x 1 OpenMP threads
@@ -121,17 +121,17 @@ Output  | 0          | 0          | 0          |   0.0 |  0.00
 Modify  | 0          | 0          | 0          |   0.0 |  0.00
 Other   |            | 0          |            |       |  0.00
 
-Nlocal:    60 ave 60 max 60 min
+Nlocal:    700 ave 700 max 700 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Nghost:    52 ave 52 max 52 min
+Nghost:    240 ave 240 max 240 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Neighs:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs:  3540 ave 3540 max 3540 min
+FullNghs:  90300 ave 90300 max 90300 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 3540
-Ave neighs/atom = 59
+Total # of neighbors = 90300
+Ave neighs/atom = 129
 Neighbor list builds = 0
 Dangerous builds not checked
 Total wall time: 0:00:00

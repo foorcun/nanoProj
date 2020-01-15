@@ -10,7 +10,7 @@ neigh_modify every 1 check no
 # read in atomic coordinates and box properties
 
 #read_data 1sample_data_file.dat     ##Olu�turdu�unuz data dosyas�n�n ismini burada kullan�n.
-read_data fullerene_C60.dat     ##Olu�turdu�unuz data dosyas�n�n ismini burada kullan�n.
+read_data nano5-10-5.dat     ##Olu�turdu�unuz data dosyas�n�n ismini burada kullan�n.
 
 # airebo potential      ## E�er potansiyel dosyas�n� bulamad���na dair hata al�rsan�z LAMMPs kurulum klas�r�ndeki .../Potentials klas�r� i�indeki CH.airebo dosyas�n� �al��t���n�z klas�re kopyalay�n.
 pair_style airebo 2.5 1 0
